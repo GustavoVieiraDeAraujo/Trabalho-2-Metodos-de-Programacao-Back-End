@@ -143,9 +143,36 @@ Base URL: `http://localhost:3000/api/v1`
 | PATCH  | `/question/update/:id` | Editar questao        |
 | DELETE | `/question/delete/:id` | Excluir questao       |
 
-### Quiz, Turma e Estatistica
+### Quiz
 
-Seguem o mesmo padrao: `GET index`, `GET show/:id`, `POST create`, `PATCH update/:id`, `DELETE delete/:id`.
+| Metodo | Rota                    | Acao                            |
+|--------|-------------------------|---------------------------------|
+| GET    | `/quiz/index`           | Listar provas                   |
+| GET    | `/quiz/show/:id`        | Consultar prova                 |
+| POST   | `/quiz/create`          | Criar prova (auth)              |
+| PATCH  | `/quiz/update/:id`      | Editar prova (auth)             |
+| DELETE | `/quiz/delete/:id`      | Excluir prova (auth)            |
+| POST   | `/quiz/add_question`    | Adicionar questao a prova (auth)|
+
+### Turma
+
+| Metodo | Rota                            | Acao                              |
+|--------|---------------------------------|-----------------------------------|
+| GET    | `/team/index`                   | Listar turmas                     |
+| GET    | `/team/show/:id`                | Consultar turma                   |
+| POST   | `/team/create`                  | Criar turma (auth)                |
+| PATCH  | `/team/update/:id`              | Editar turma (auth)               |
+| DELETE | `/team/delete/:id`              | Excluir turma (auth)              |
+| POST   | `/team/add_user_to_team`        | Adicionar aluno a turma (auth)    |
+| DELETE | `/team/remove_user_from_team`   | Remover aluno da turma (auth)     |
+
+### Estatistica
+
+| Metodo | Rota                      | Acao                      |
+|--------|---------------------------|---------------------------|
+| GET    | `/statistic/index`        | Listar estatisticas       |
+| GET    | `/statistic/show/:id`     | Consultar estatistica     |
+| PATCH  | `/statistic/update/:id`   | Atualizar estatistica (auth) |
 
 ---
 

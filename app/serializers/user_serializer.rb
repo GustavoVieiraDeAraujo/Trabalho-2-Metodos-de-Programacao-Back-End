@@ -14,5 +14,5 @@ class UserSerializer < ActiveModel::Serializer
   #   @return [Boolean] se o usuário é um estudante
   # @!attribute [rw] is_teacher
   #   @return [Boolean] se o usuário é um professor
-  attributes :id, :name, :enrollment, :is_admin, :is_student, :is_teacher
+  attributes :id, :name, :email, :enrollment, :authentication_token, :is_admin, :is_student, :is_teacher
 end
