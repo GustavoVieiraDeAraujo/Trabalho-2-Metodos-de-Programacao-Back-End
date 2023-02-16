@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Users', type: :request do
-  # Teste da rota GET /api/v1/user/login
+  # Teste da rota POST /api/v1/user/login
   describe 'user login' do
     before do
       create(:user, email: 'teste@teste', password: '1234567')
     end
     context 'when user has no a valid email' do
       it 'return http status unauthorized' do
-        get '/api/v1/user/login', params: {
+        post '/api/v1/user/login', params: {
           email: 'teste@teste.com',
           password: '1234567'
         }
@@ -17,17 +17,17 @@ RSpec.describe 'Api::V1::Users', type: :request do
     end
     context 'when user has no a valid password' do
       it 'return http status unauthorized' do
-        get '/api/v1/user/login', params: {
+        post '/api/v1/user/login', params: {
           email: 'teste@teste',
           password: '-1'
         }
         expect(response).to have_http_status(:unauthorized)
       end
     end
-    # Teste da rota GET /api/v1/user/logout
+    # Teste da rota DELETE /api/v1/user/logout
     context 'when login is a success' do
       it 'return http status ok' do
-        get '/api/v1/user/login', params: {
+        post '/api/v1/user/login', params: {
           email: 'teste@teste',
           password: '1234567'
         }
@@ -38,14 +38,14 @@ RSpec.describe 'Api::V1::Users', type: :request do
   describe 'user logout' do
     let(:user) { create(:user) }
     before do
-      get '/api/v1/user/login', params: {
+      post '/api/v1/user/login', params: {
         email: 'teste@teste',
         password: '1234567'
       }
     end
     context 'when user is loged' do
       it 'return http status ok' do
-        get '/api/v1/user/logout', headers: {
+        delete '/api/v1/user/logout', headers: {
           'X-User-Email': user.email,
           'X-User-Token': user.authentication_token
         }
