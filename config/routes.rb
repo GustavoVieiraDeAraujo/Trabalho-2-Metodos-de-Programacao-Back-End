@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         post "create", to: "quiz#create"
         patch "update/:id", to: "quiz#update"
         delete "delete/:id", to: "quiz#delete"
+        post "add_question", to: "quiz#add_question"
       end
 
       scope "statistic" do
