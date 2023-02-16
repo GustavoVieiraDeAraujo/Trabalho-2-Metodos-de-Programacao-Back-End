@@ -3,7 +3,7 @@ module Api
     # Controlador para gerenciar questões.
     class QuestionController < ApplicationController
       # Autentica o token de autenticação do usuario para as ações de delete e update.
-      acts_as_token_authentication_handler_for User, only: %i[delete update]
+      acts_as_token_authentication_handler_for User, only: %i[create delete update]
 
       # ==== Ação para listar todos as questões cadastrados no sistema.
       #
