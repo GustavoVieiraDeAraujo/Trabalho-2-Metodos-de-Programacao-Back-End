@@ -15,10 +15,10 @@ RSpec.describe 'Api::V1::Teams', type: :request do
   end
   # Teste da rota GET /api/v1/team/show/:id
   describe '/GET #show' do
-    it 'if team has not found' do
+    it 'if team is found' do
       team = create(:team)
       get "/api/v1/team/show/#{team.id}"
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'if team not exist' do
@@ -34,12 +34,12 @@ RSpec.describe 'Api::V1::Teams', type: :request do
     end
 
     context 'with ok params' do
-      it 'return http status has bad_request' do
+      it 'return http status created' do
         post '/api/v1/team/create', params: { team: team_params }, headers: {
           'X-User-Email': user.email,
           'X-User-Token': user.authentication_token
         }
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -63,12 +63,12 @@ RSpec.describe 'Api::V1::Teams', type: :request do
     let(:team) { create(:team, name: 'teste2') }
 
     context 'with ok params' do
-      it 'return http status unprocessable_entity' do
+      it 'return http status ok' do
         patch "/api/v1/team/update/#{team.id}", params: { team: team_params }, headers: {
           'X-User-Email': user.email,
           'X-User-Token': user.authentication_token
         }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:ok)
       end
     end
 
