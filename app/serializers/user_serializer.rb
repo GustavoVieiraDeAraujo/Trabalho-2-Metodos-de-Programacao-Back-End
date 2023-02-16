@@ -8,11 +8,15 @@ class UserSerializer < ActiveModel::Serializer
   #   @return [String] o nome do usuário
   # @!attribute [rw] enrollment
   #   @return [Integer] o número de matrícula do usuário
+  # @!attribute [rw] email
+  #   @return [String] o email do usuário
+  # @!attribute [rw] authentication_token
+  #   @return [String] o token de autenticação do usuário, usado no header X-User-Token
   # @!attribute [rw] is_admin
   #   @return [Boolean] se o usuário é um administrador
   # @!attribute [rw] is_student
   #   @return [Boolean] se o usuário é um estudante
   # @!attribute [rw] is_teacher
   #   @return [Boolean] se o usuário é um professor
-  attributes :id, :name, :enrollment, :is_admin, :is_student, :is_teacher
+  attributes :id, :name, :email, :enrollment, :authentication_token, :is_admin, :is_student, :is_teacher
 end
