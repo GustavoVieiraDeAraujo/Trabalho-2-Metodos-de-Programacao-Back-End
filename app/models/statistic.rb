@@ -4,7 +4,7 @@ class Statistic < ApplicationRecord
   validate :right_value
 
   # Garante que as contagens de perguntas respondidas, respostas certas e erradas são não negativas
-  validates :questions_answered, :right_answers, :wrong_answers, length: { minimum: 0, allow_nil: false }
+  validates :questions_answered, :right_answers, :wrong_answers, numericality: { greater_than_or_equal_to: 0 }, allow_nil: false
 
   # Associa uma estatística a um usuário
   has_one :user
