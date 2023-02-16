@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     namespace "v1" do
 
       scope "user" do
-        get 'login', to: 'user#login'
-        get 'logout', to: 'user#logout'
+        post 'login', to: 'user#login'
+        delete 'logout', to: 'user#logout'
         get "index", to: "user#index"
         get "show/:id", to: "user#show"
         post "create", to: "user#create"
