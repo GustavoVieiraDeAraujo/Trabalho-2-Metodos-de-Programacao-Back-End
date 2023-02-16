@@ -118,7 +118,24 @@ module Api
         render json: e, status: :bad_request
       end
 
-      # Metodo privado que so tera acesso pela classe Team
+      # Adiciona um aluno a uma turma
+      def add_user_to_team
+        team = Team.find(params[:team_id])
+        user = User.find(params[:user_id])
+        StudentTeam.create!(user: user, team: team)
+        render json: { message: "#{user.name} adicionado a turma #{team.name}" }, status: :ok
+      rescue StandardError => e
+        render json: { error: e.message }, status: :bad_request
+      end
+
+      # Remove um aluno de uma turma
+      def remove_user_from_team
+        student_team = StudentTeam.find_by!(user_id: params[:user_id], team_id: params[:team_id])
+        student_team.destroy!
+        render json: { message: "Aluno removido da turma com sucesso" }, status: :ok
+      rescue StandardError => e
+        render json: { error: e.message }, status: :bad_request
+      end
 
       private
 

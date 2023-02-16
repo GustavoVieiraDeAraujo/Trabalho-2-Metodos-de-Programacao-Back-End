@@ -32,9 +32,7 @@ Rails.application.routes.draw do
       scope "statistic" do
         get "index", to: "statistic#index"
         get "show/:id", to: "statistic#show"
-        post "create", to: "statistic#create"
         patch "update/:id", to: "statistic#update"
-        delete "delete/:id", to: "statistic#delete"
       end
 
       scope "team" do
