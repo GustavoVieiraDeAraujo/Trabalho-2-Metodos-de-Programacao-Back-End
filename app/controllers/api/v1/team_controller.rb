@@ -3,7 +3,7 @@ module Api
     # Controlador para gerenciar turmas.
     class TeamController < ApplicationController
       # Autentica o token de autenticação do usuario para as ações de create, delete e update.
-      acts_as_token_authentication_handler_for User, only: %i[create delete update]
+      acts_as_token_authentication_handler_for User, only: %i[create delete update add_user_to_team remove_user_from_team]
 
       # ==== Ação para listar todos as turmas cadastrados no sistema.
       #
