@@ -22,7 +22,7 @@ class TeamSerializer < ActiveModel::Serializer
 
   # Retorna o professor responsável pelo time
   def teacher
-    user = User.find_by!(id: object.id)
+    user = User.find_by!(id: object.user_id)
     {
       id: user.id,
       name: user.name
@@ -49,7 +49,7 @@ class TeamSerializer < ActiveModel::Serializer
       array.append(
         id: quiz.quiz.id,
         name: quiz.quiz.title,
-        enrollment: quiz.quiz.subject
+        subject: quiz.quiz.subject
       )
     end
     array
