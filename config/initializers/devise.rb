@@ -264,6 +264,11 @@ Devise.setup do |config|
   #
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html]
+  #
+  # Esta aplicacao e API-only (sem views/sign_in page), entao nenhum formato
+  # deve ser tratado como navegacional: qualquer falha de autenticacao deve
+  # retornar 401 em JSON, nunca um redirect HTML para uma rota inexistente.
+  config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
