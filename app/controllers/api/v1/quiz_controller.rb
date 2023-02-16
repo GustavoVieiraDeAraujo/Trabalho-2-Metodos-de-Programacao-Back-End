@@ -3,7 +3,7 @@ module Api
     # Controlador para gerenciar provas.
     class QuizController < ApplicationController
       # Autentica o token de autenticação do usuario para as ações de create, delete e update.
-      acts_as_token_authentication_handler_for User, only: %i[create delete update]
+      acts_as_token_authentication_handler_for User, only: %i[create delete update add_question]
 
       # ==== Ação para listar todos as provas cadastrados no sistema.
       #
@@ -118,7 +118,15 @@ module Api
         render json: e, status: :bad_request
       end
 
-      # Metodo privado que so tera acesso pela classe Quiz
+      # Adiciona uma questao a uma prova
+      def add_question
+        quiz = Quiz.find(params[:quiz_id])
+        question = Question.find(params[:question_id])
+        QuizQuestion.create!(quiz: quiz, question: question)
+        render json: { message: "Questao adicionada a prova #{quiz.title}" }, status: :ok
+      rescue StandardError => e
+        render json: { error: e.message }, status: :bad_request
+      end
 
       private
 
